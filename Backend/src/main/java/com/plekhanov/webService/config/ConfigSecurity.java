@@ -8,7 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
+/**
+ * Справка: https://www.baeldung.com/spring-security-login
+ */
 @Configuration
 @EnableWebSecurity
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
@@ -18,16 +20,40 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
+//        http.authorizeRequests()
+//                .antMatchers("/", "/home").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login.html")
+//                .permitAll()
+//                .loginProcessingUrl("/perform_login")
+//                .permitAll()
+//                .failureUrl("/login.html?error=true")
+//                .permitAll()
+//                .defaultSuccessUrl("/", true)
+//                .and()
+//                .logout()
+//                .permitAll();
+
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/anonymous*").anonymous()
+                .antMatchers("/login*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                //.loginPage("/login")
-                .permitAll()
+                .loginPage("/login.html")
+                .loginProcessingUrl("/login/auth")
+                .defaultSuccessUrl("/", true)
+                //.failureUrl("/login.html?error=true")
+                //.failureHandler(authenticationFailureHandler())
                 .and()
                 .logout()
-                .permitAll();
+                .logoutUrl("/perform_logout")
+                .deleteCookies("JSESSIONID");
+                //.logoutSuccessHandler(logoutSuccessHandler());
     }
 
     /**
