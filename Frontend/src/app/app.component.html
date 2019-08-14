@@ -1,0 +1,35 @@
+
+
+<div class="leftMenu">
+  <a class="homeLink" routerLink="/"> Домой </a>
+  <ol>
+    <ul>
+      <li>
+        <a routerLink="page1"> Страница 1 </a>
+      </li>
+      <li>
+        <a routerLink="page2"> Страница 2 </a>
+      </li>
+    </ul>
+  </ol>
+
+</div>
+<div class="header ">
+
+   <span>
+      {{ context.pageName }}
+    </span>
+  <span>
+    Welcome to {{ title }}!
+  </span>
+
+</div>
+
+
+
+<div class="container">
+  <app-home *ngIf="router.url === '/'"></app-home>
+  <router-outlet></router-outlet>
+</div>
+
+

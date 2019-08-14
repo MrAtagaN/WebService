@@ -1,0 +1,63 @@
+.leftMenu {
+  float: left; /*Задаем обтекание*/
+  line-height: 50px; /*Высота строки +  верт. центрирования текста*/
+  /*font-size: 40px;*/
+  margin-left: -8px;
+  padding-top: 40px;
+
+  width: 110px;
+  height: 1000px;
+
+  text-align: center;
+  background: #172a39;
+}
+
+li {
+  list-style-type: none; /* Убираем маркеры */
+  margin: 10px;
+}
+
+ol li {
+  padding-top: 40px;
+  margin-left: -80px;
+
+}
+
+.container {
+  margin-left: 102px;
+  padding: 20px;
+}
+
+.header {
+  background-image: linear-gradient(to right, #071a29, #172a39 46%, #172a39 56%, #071a29);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-left: 0px;
+  width: auto;
+  padding-left: 100px;
+
+}
+
+span {
+  margin-right: 30px;
+  margin-left: 50px;
+}
+
+A {
+  text-decoration: none;
+  color: #bcbec1; /* Цвет ссылок */
+}
+A:visited {
+  color: #bcbec1; /* Цвет посещенных ссылок */
+}
+A:active {
+  color: #bcbec1; /* Цвет активных ссылок */
+}
+
+.lineBlock {
+  display:inline
+}
+
+h1 {
+  text-align:center
+}
