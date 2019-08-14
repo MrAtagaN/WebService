@@ -45,13 +45,13 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login.html")
-                .loginProcessingUrl("/login/auth")
+                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/", true)
                 //.failureUrl("/login.html?error=true")
                 //.failureHandler(authenticationFailureHandler())
                 .and()
                 .logout()
-                .logoutUrl("/perform_logout")
+                .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID");
                 //.logoutSuccessHandler(logoutSuccessHandler());
     }
