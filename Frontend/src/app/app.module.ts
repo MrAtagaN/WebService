@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { Page1Component } from './pages/page1/page1.component';
 import { Page2Component } from './pages/page2/page2.component';
 import { HomeComponent } from './pages/home/home.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,9 +15,10 @@ import { HomeComponent } from './pages/home/home.component';
     Page2Component,
     HomeComponent
   ],
-  imports: [
+  imports: [  //Регистрация модулей
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
