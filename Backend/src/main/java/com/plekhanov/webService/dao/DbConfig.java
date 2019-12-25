@@ -1,4 +1,4 @@
-package com.plekhanov.webService.config;
+package com.plekhanov.webService.dao;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;

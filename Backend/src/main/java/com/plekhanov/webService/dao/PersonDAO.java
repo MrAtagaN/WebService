@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+//TODO Удалить
 @Repository
 public class PersonDAO {
 
@@ -17,7 +18,7 @@ public class PersonDAO {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public Person findPersonById(int id) {
-        return (Person) jdbcTemplate.queryForObject("select * from PERSON where PERSON.id = ?", rowMapper, id);
+        return jdbcTemplate.queryForObject("select * from PERSON where PERSON.id = ?", rowMapper, id);
     }
 
     private final RowMapper<Person> rowMapper = (resultSet, i) -> {

@@ -1,6 +1,5 @@
 package com.plekhanov.webService.entities;
 
-import java.util.Date;
 
 public class Person {
 

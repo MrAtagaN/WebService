@@ -1,0 +1,37 @@
+<configuration>
+
+    <property name="LOG_NAME" value="appLog"/>
+
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_NAME}_%d{yyyy-MM-dd HH}.log</fileNamePattern>
+        </rollingPolicy>
+<!--        <triggeringPolicy-->
+<!--                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+<!--            <param name="MaxFileSize" value="10MB" />-->
+<!--        </triggeringPolicy>-->
+<!--        <layout class="org.apache.log4j.PatternLayout">-->
+<!--            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p - %m%n" />-->
+<!--        </layout>-->
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %class{30}.%M  |  %msg%n</pattern>
+        </encoder>
+
+    </appender>
+
+    <appender name="STOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %class{20}  |  %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STOUT"/>
+    </root>
+</configuration>

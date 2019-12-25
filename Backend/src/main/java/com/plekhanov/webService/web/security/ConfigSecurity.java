@@ -1,4 +1,4 @@
-package com.plekhanov.webService.config;
+package com.plekhanov.webService.web.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -52,6 +52,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
                 .deleteCookies("JSESSIONID");
                 //.logoutSuccessHandler(logoutSuccessHandler());
     }

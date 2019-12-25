@@ -1,4 +1,4 @@
-package com.plekhanov.webService.controllers;
+package com.plekhanov.webService.web;
 
 import com.plekhanov.webService.dao.PersonDAO;
 import com.plekhanov.webService.entities.Person;
