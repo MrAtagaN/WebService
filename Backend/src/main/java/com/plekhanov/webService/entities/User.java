@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 
 
 @Data
-public class User extends BaseEntity<Long> {
+public class User extends BaseEntity<Integer> {
 
-    private Long id;
+    private Integer id; //огрничение SQLite
     private String name;
     private LocalDateTime lastEnter;
 

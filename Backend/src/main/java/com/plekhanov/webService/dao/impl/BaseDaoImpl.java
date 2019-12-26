@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
@@ -38,14 +39,14 @@ public abstract class BaseDaoImpl<T extends BaseEntity<ID>, ID> implements BaseD
 
 
     @Override
-    public T findById(ID id) {
+    public T findById(@NotNull ID id) {
         return DataAccessUtils.singleResult(jdbcTemplate.query("SELECT * FROM " + getTableName() +
                 " WHERE ID = ?", new Object[]{id}, mapper));
     }
 
 
     @Override
-    public T findByIdForUpdate(ID id) {
+    public T findByIdForUpdate(@NotNull ID id) {
         return DataAccessUtils.singleResult(jdbcTemplate.query("SELECT * FROM " + getTableName() +
                 " WHERE ID = ? FOR UPDATE ", new Object[]{id}, mapper));
     }

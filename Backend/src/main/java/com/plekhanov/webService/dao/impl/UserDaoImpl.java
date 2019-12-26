@@ -1,14 +1,15 @@
 package com.plekhanov.webService.dao.impl;
 
-
+import com.plekhanov.webService.dao.UserDao;
 import com.plekhanov.webService.entities.User;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+
 @Repository
-public class UserDaoImpl extends BaseDaoImpl<User, Long> {
+public class UserDaoImpl extends BaseDaoImpl<User, Integer> implements UserDao {
 
     @Override
     String getTableName() {
@@ -30,16 +31,16 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long> {
         Map<String, Object> params = new HashMap<>();
         params.put("id", user.getId);
         params.put("name", user.getName());
-        params.put("last_enter", user.getLastEnter());
+        params.put("lastEnter", user.getLastEnter());
         return params;
     }
 
     public UserDaoImpl() {
         super((resultSet, i) -> {
             User user = new User();
-            user.setId(resultSet.getLong("id"));
+            user.setId(resultSet.getInt("id"));
             user.setName(resultSet.getString("name"));
-            user.setLastEnter(resultSet.getObject("last_enter", LocalDateTime.class));
+            //user.setLastEnter(resultSet.getObject("last_enter", LocalDateTime.class));  //SqLite не поддерживает
             return user;
         });
     }

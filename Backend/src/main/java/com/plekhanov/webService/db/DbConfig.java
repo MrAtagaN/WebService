@@ -1,4 +1,4 @@
-package com.plekhanov.webService.dao;
+package com.plekhanov.webService.db;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 import java.io.File;
+
 
 @Configuration
 public class DbConfig {
