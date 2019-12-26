@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 
 @Data
-public class User {
+public class User extends BaseEntity<Long> {
 
     private Long id;
     private String name;

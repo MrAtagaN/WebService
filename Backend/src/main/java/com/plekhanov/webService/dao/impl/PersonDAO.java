@@ -1,4 +1,4 @@
-package com.plekhanov.webService.dao;
+package com.plekhanov.webService.dao.impl;
 
 import com.plekhanov.webService.entities.Person;
 import org.springframework.beans.factory.annotation.Autowired;
