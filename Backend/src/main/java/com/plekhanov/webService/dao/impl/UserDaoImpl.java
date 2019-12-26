@@ -1,19 +1,14 @@
 package com.plekhanov.webService.dao.impl;
 
-import com.plekhanov.webService.dao.UserDao;
-import com.plekhanov.webService.entities.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.plekhanov.webService.entities.User;
+import org.springframework.stereotype.Repository;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class UserDaoImpl extends BaseDaoImpl<Long, User>  {
+public class UserDaoImpl extends BaseDaoImpl<User, Long> {
 
     @Override
     String getTableName() {
@@ -22,17 +17,21 @@ public class UserDaoImpl extends BaseDaoImpl<Long, User>  {
 
     @Override
     String getUpdateQuery() {
-        return "";
+        return "update USERS set id=:id, name=:name, lastEnter=:lastEnter";
     }
 
     @Override
     String getInsertQuery() {
-        return null;
+        return "insert into USERS (id, name, lastEnter) values (:id, :name, :lastEnter)";
     }
 
     @Override
-    Map<String, Object> getParamMap(Long aLong) {
-        return null;
+    Map<String, Object> getParamMap(User user) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", user.getId);
+        params.put("name", user.getName());
+        params.put("lastEnter", user.getLastEnter());
+        return params;
     }
 
     public UserDaoImpl() {
@@ -40,7 +39,7 @@ public class UserDaoImpl extends BaseDaoImpl<Long, User>  {
             User user = new User();
             user.setId(resultSet.getLong("id"));
             user.setName(resultSet.getString("name"));
-            user.setLastEnter(resultSet.getTimestamp("lastEnter").toLocalDateTime());
+            user.setLastEnter(resultSet.getObject("lastEnter", LocalDateTime.class));
             return user;
         });
     }
