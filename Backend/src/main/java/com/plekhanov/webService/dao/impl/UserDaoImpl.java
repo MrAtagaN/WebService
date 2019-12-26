@@ -17,12 +17,12 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long> {
 
     @Override
     String getUpdateQuery() {
-        return "update USERS set id=:id, name=:name, lastEnter=:lastEnter";
+        return "update USERS set id=:id, name=:name, last_enter=:lastEnter";
     }
 
     @Override
     String getInsertQuery() {
-        return "insert into USERS (id, name, lastEnter) values (:id, :name, :lastEnter)";
+        return "insert into USERS (id, name, last_enter) values (:id, :name, :lastEnter)";
     }
 
     @Override
@@ -30,7 +30,7 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long> {
         Map<String, Object> params = new HashMap<>();
         params.put("id", user.getId);
         params.put("name", user.getName());
-        params.put("lastEnter", user.getLastEnter());
+        params.put("last_enter", user.getLastEnter());
         return params;
     }
 
@@ -39,7 +39,7 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long> {
             User user = new User();
             user.setId(resultSet.getLong("id"));
             user.setName(resultSet.getString("name"));
-            user.setLastEnter(resultSet.getObject("lastEnter", LocalDateTime.class));
+            user.setLastEnter(resultSet.getObject("last_enter", LocalDateTime.class));
             return user;
         });
     }
