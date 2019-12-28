@@ -1,25 +1,45 @@
 package com.plekhanov.webService.web.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * antMatchers() - маска URL
+ * permitAll - разрешено всем
  *
  * loginPage - URL для аутентификации
  * loginProcessingUrl - URL для принятия логина и пароля
  * defaultSuccessUrl - URL после авторизации
  *
+ *
+ *
+ * UserDetails - Права и доступы пользователя
+ * GrantedAuthority - Роли пользователя
+ *
+ * UserDetailsService - Сервис возвращающий UserDetails пользователя по имени
+ *
+ *
+ * https://www.youtube.com/watch?v=HLSmjZ5vN0w
  * Справка: https://www.baeldung.com/spring-security-login
  */
 @Configuration
 @EnableWebSecurity
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    @Qualifier("AppUserDetailService")
+    UserDetailsService userDetailsService;
 
     /**
      * Настройка защищенных эндпойнтов
@@ -64,14 +84,16 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Авторизация пользователей
+     * Конфигурация AuthenticationManager
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password(encoder.encode("admin"))
-                .roles("admin");
+//        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//        auth.inMemoryAuthentication()
+//                .withUser("admin")
+//                .password(encoder.encode("admin"))
+//                .roles("admin");
+
+        auth.userDetailsService(userDetailsService); //Свой UserDetailsService
     }
 }
