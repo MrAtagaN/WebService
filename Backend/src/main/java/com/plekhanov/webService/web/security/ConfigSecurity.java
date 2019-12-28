@@ -9,6 +9,12 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
+ * antMatchers() - маска URL
+ *
+ * loginPage - URL для аутентификации
+ * loginProcessingUrl - URL для принятия логина и пароля
+ * defaultSuccessUrl - URL после авторизации
+ *
  * Справка: https://www.baeldung.com/spring-security-login
  */
 @Configuration
