@@ -23,7 +23,7 @@ public class AppUserDetailService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException { //TODO реализовать
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
         Set<Role> roles = new HashSet<>();
         roles.add(Role.ADMIN);
@@ -38,7 +38,7 @@ public class AppUserDetailService implements UserDetailsService {
                 enabled(true).
                 build();
 
-
+        //TODO реализовать
 //        User user = userDao.findByName(userName);
 //        if (user == null) {
 //            throw new UsernameNotFoundException("User " + userName + " not found!");

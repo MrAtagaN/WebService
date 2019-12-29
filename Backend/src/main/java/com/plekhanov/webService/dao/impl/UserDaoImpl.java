@@ -15,6 +15,8 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
             user.setId(resultSet.getLong("id"));
             user.setPassword(resultSet.getString("password"));
             user.setUsername(resultSet.getString("username"));
+
+
             //TODO
             return user;
         });
