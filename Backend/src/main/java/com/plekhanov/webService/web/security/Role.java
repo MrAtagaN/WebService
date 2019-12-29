@@ -1,4 +1,4 @@
-package com.plekhanov.webService.web.security.auth;
+package com.plekhanov.webService.web.security;
 
 import org.springframework.security.core.GrantedAuthority;
 

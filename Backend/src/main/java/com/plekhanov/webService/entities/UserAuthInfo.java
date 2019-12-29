@@ -1,7 +1,10 @@
-package com.plekhanov.webService.web.security.auth;
+package com.plekhanov.webService.entities;
 
+import com.plekhanov.webService.web.security.Role;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Set;
 
@@ -10,8 +13,11 @@ import java.util.Set;
  */
 @Data
 @Builder
-public class UserAuthInfo implements UserDetails {
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserAuthInfo extends BaseEntity<Long> implements UserDetails {
 
+    private Long id;
     private String password;
     private String username;
     private Set<Role> authorities;
