@@ -4,7 +4,7 @@
 2 скачать angular cli: npm install -g @angular/cli
 3 в директории Frontend выполнить комманду: npm install
 4 установить СУБД Postgres 10.11 https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
-    пароль по умолчанию admin
+    пароль по умолчанию 12345678
 
 
 Сборка проекта
