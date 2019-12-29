@@ -1,6 +1,7 @@
 package com.plekhanov.webService.web.security;
 
 import com.plekhanov.webService.dao.UserDao;
+import com.plekhanov.webService.dao.UserRoleDao;
 import com.plekhanov.webService.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,9 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 
 /**
@@ -22,6 +20,8 @@ public class AppUserDetailService implements UserDetailsService {
 
     @Autowired
     UserDao userDao;
+    @Autowired
+    UserRoleDao userRoleDao;
 
     @PostConstruct
     private void init() {
@@ -64,6 +64,7 @@ public class AppUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("User " + userName + " not found!");
         }
 
+        user.setAuthorities(userRoleDao.findRolesByUserId(user.getId()));
         return user;
     }
 

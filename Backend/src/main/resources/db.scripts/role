@@ -1,7 +1,7 @@
 create table role
 (
     user_id bigint ,
-    role varchar(255),
+    name varchar(255),
 
     constraint role___fk
         foreign key (user_id) references users (id),

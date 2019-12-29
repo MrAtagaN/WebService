@@ -54,7 +54,7 @@ public abstract class BaseDaoImpl<T extends BaseEntity<ID>, ID> implements BaseD
 
     @Override
     public ID saveOrUpdate(T t) {
-        ID id = t.getId;
+        ID id = t.getId();
         if (id == null) {
             Map<String, Object> params = getParamMap(t);
             KeyHolder keyHolder = new GeneratedKeyHolder();
