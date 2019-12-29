@@ -65,13 +65,17 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/anonymous*").anonymous()
-                .antMatchers("/login*").permitAll()
+                //.antMatchers("/admin/**").hasRole("ADMIN")
+                //.antMatchers("/anonymous*").anonymous()
+                .antMatchers("/").permitAll()
+                .antMatchers("/*.js").permitAll()
+                .antMatchers("/*.html").permitAll()
+                .antMatchers("/*.css").permitAll()
+                .antMatchers("/login.html").permitAll() //TODO поменять
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login.html")
+                .loginPage("/login.html")//TODO поменять
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/", true)
                 //.failureUrl("/login.html?error=true")
