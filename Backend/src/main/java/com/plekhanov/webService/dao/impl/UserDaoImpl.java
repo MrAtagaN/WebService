@@ -8,6 +8,7 @@ import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +37,7 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
 
 
     @Override
-    public User findByName(String userName) {
+    public User findByName(@NotNull String userName) {
         Map<String, Object> params = new HashMap<>();
         params.put("userName", userName);
 

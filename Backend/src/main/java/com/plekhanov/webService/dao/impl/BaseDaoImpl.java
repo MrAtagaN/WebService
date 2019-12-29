@@ -88,8 +88,8 @@ public abstract class BaseDaoImpl<T extends BaseEntity<ID>, ID> implements BaseD
 
 
     @Override
-    public void delete(ID id) {
-        jdbcTemplate.update("DELETE FROM " + getTableName() + " WHERE ID = ? ", id);
+    public void delete(@NotNull ID id) {
+        jdbcTemplate.update("DELETE FROM " + getTableName() + " WHERE id = ? ", id);
     }
 
     abstract String getTableName();

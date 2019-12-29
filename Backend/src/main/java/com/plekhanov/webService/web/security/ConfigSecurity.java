@@ -89,13 +89,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//        auth.inMemoryAuthentication()
-//                .withUser("admin")
-//                .password(encoder.encode("admin"))
-//                .roles("admin");
 
-        //Свой UserDetailsService
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }

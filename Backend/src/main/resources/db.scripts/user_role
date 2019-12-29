@@ -1,10 +1,9 @@
-create table role
+create table user_role
 (
     user_id bigint ,
-    name varchar(255),
+    role varchar(255),
 
     constraint role___fk
         foreign key (user_id) references users (id),
     primary key (user_id, role)
-
 );

@@ -8,7 +8,7 @@ public interface UserRoleDao {
 
     Set<Role> findRolesByUserId(long userId);
 
-    void addRoleToUser(Role role, Long userId);
+    void addRoleToUser(long userId, Role role);
 
-    void deleteRoleOfUser(Role role, Long userId);
+    void deleteRoleOfUser(long userId, Role role);
 }
