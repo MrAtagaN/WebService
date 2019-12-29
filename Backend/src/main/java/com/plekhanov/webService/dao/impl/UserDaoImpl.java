@@ -4,45 +4,44 @@ import com.plekhanov.webService.dao.UserDao;
 import com.plekhanov.webService.entities.User;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.Map;
 
-
 @Repository
-public class UserDaoImpl extends BaseDaoImpl<User, Integer> implements UserDao {
-
-    @Override
-    String getTableName() {
-        return "USERS";
-    }
-
-    @Override
-    String getUpdateQuery() {
-        return "update USERS set id=:id, name=:name, last_enter=:lastEnter";
-    }
-
-    @Override
-    String getInsertQuery() {
-        return "insert into USERS (id, name, last_enter) values (:id, :name, :lastEnter)";
-    }
-
-    @Override
-    Map<String, Object> getParamMap(User user) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("id", user.getId);
-        params.put("name", user.getName());
-        params.put("lastEnter", user.getLastEnter());
-        return params;
-    }
+public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
 
     public UserDaoImpl() {
         super((resultSet, i) -> {
             User user = new User();
-            user.setId(resultSet.getInt("id"));
-            user.setName(resultSet.getString("name"));
-            //user.setLastEnter(resultSet.getObject("last_enter", LocalDateTime.class));  //SqLite не поддерживает
+            user.setId(resultSet.getLong("id"));
+            user.setPassword(resultSet.getString("password"));
+            user.setUsername(resultSet.getString("username"));
+            //TODO
             return user;
         });
     }
 
+    @Override
+    public User findByName(String userName) {
+        return null;
+    }
+
+    @Override
+    String getTableName() {
+        return null;
+    }
+
+    @Override
+    String getUpdateQuery() {
+        return null;
+    }
+
+    @Override
+    String getInsertQuery() {
+        return null;
+    }
+
+    @Override
+    Map<String, Object> getParamMap(User user) {
+        return null;
+    }
 }

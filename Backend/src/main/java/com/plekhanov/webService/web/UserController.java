@@ -19,22 +19,6 @@ public class UserController {
     private UserDao userDao;
 
 
-    @GetMapping("info/{id}")
-    public User getInfo(@PathVariable Integer id) {
-        return userDao.findById(id);
-    }
-
-
-    @GetMapping("create")
-    public Integer createUser() {
-        User user = new User();
-
-        user.setId(100);
-        user.setName("atagan_" + new Random().nextInt(100)); //
-        user.setLastEnter(LocalDateTime.now());
-
-        return userDao.saveOrUpdate(user);
-    }
 
 
 

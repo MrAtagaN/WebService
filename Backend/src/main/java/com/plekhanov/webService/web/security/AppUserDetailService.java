@@ -1,12 +1,11 @@
 package com.plekhanov.webService.web.security;
 
-import com.plekhanov.webService.dao.UserAuthInfoDao;
-import com.plekhanov.webService.entities.UserAuthInfo;
+import com.plekhanov.webService.dao.UserDao;
+import com.plekhanov.webService.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -20,31 +19,32 @@ import java.util.Set;
 public class AppUserDetailService implements UserDetailsService {
 
     @Autowired
-    UserAuthInfoDao userAuthInfoDao;
+    UserDao userDao;
 
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException { //TODO реализовать
 
-//        Set<Role> roles = new HashSet<>();
-//        roles.add(Role.ADMIN);
-//
-//        return UserAuthInfo.builder().
-//                username(userName).
-//                password("$2a$10$LPlDRvtwnCdZfq53Xzi.3.1emXw5VFyTLDMOq2gTM7Cf1cqf7xRgC"). //admin
-//                authorities(roles).
-//                accountNonExpired(true).
-//                accountNonLocked(true).
-//                credentialsNonExpired(true).
-//                enabled(true).
-//                build();
+        Set<Role> roles = new HashSet<>();
+        roles.add(Role.ADMIN);
 
-        UserAuthInfo userAuthInfo = userAuthInfoDao.findByName(userName);
-        if (userAuthInfo == null) {
-            throw new UsernameNotFoundException("User " + userName + " not found!");
-        }
+        User user = User.builder().
+                username(userName).
+                password("$2a$10$LPlDRvtwnCdZfq53Xzi.3.1emXw5VFyTLDMOq2gTM7Cf1cqf7xRgC"). //admin
+                authorities(roles).
+                accountNonExpired(true).
+                accountNonLocked(true).
+                credentialsNonExpired(true).
+                enabled(true).
+                build();
 
-        return userAuthInfo;
+
+//        User user = userDao.findByName(userName);
+//        if (user == null) {
+//            throw new UsernameNotFoundException("User " + userName + " not found!");
+//        }
+
+        return user;
     }
 
 
