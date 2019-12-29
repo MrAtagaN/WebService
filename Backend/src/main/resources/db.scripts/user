@@ -1,0 +1,16 @@
+create table Users
+(
+    id bigserial not null
+        constraint Users_pk
+            primary key,
+    user_name varchar(255) not null,
+    column_3 varchar(255) not null,
+    account_non_expired boolean not null,
+    account_non_locked boolean not null,
+    credential_is_non_expired boolean not null,
+    enabled boolean not null,
+    last_enter timestamp not null
+);
+
+create unique index Users_user_name_uindex
+    on Users (user_name);

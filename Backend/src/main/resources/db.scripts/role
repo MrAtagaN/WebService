@@ -1,0 +1,10 @@
+create table role
+(
+    id bigserial
+        constraint role_pk
+            primary key,
+    user_id bigint
+        constraint role__id_fk
+            references Users (id),
+    name varchar(255) not null
+);
