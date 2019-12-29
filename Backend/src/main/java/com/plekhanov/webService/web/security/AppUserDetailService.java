@@ -1,17 +1,13 @@
 package com.plekhanov.webService.web.security;
 
-import com.plekhanov.webService.dao.UserDao;
-import com.plekhanov.webService.dao.UserRoleDao;
-import com.plekhanov.webService.entities.User;
+import com.plekhanov.webService.persistence.dao.UserDao;
+import com.plekhanov.webService.persistence.dao.UserRoleDao;
+import com.plekhanov.webService.persistence.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-
-import static com.plekhanov.webService.web.security.Role.ADMIN;
 
 
 /**

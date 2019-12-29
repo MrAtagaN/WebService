@@ -1,6 +1,6 @@
-package com.plekhanov.webService.dao;
+package com.plekhanov.webService.persistence.dao;
 
-import com.plekhanov.webService.entities.User;
+import com.plekhanov.webService.persistence.entities.User;
 
 import javax.validation.constraints.NotNull;
 

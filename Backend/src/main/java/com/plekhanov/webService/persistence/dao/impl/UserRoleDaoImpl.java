@@ -1,6 +1,6 @@
-package com.plekhanov.webService.dao.impl;
+package com.plekhanov.webService.persistence.dao.impl;
 
-import com.plekhanov.webService.dao.UserRoleDao;
+import com.plekhanov.webService.persistence.dao.UserRoleDao;
 import com.plekhanov.webService.web.security.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;

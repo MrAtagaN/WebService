@@ -1,8 +1,8 @@
-package com.plekhanov.webService.dao.impl;
+package com.plekhanov.webService.persistence.dao.impl;
 
-import com.plekhanov.webService.dao.UserDao;
-import com.plekhanov.webService.dao.UserRoleDao;
-import com.plekhanov.webService.entities.User;
+import com.plekhanov.webService.persistence.dao.UserDao;
+import com.plekhanov.webService.persistence.dao.UserRoleDao;
+import com.plekhanov.webService.persistence.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;

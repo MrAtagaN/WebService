@@ -1,4 +1,4 @@
-package com.plekhanov.webService.dao;
+package com.plekhanov.webService.persistence.dao;
 
 import com.plekhanov.webService.web.security.Role;
 import java.util.Set;
