@@ -3,7 +3,7 @@
 1 скачать npm: https://nodejs.org/en/download/
 2 скачать angular cli: npm install -g @angular/cli
 3 в директории Frontend выполнить комманду: npm install
-4 установить СУБД postgres https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+4 установить СУБД Postgres 10.11 https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
     пароль по умолчанию admin
 
 

@@ -1,6 +1,7 @@
 package com.plekhanov.webService.db;
 
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,23 +19,25 @@ import java.io.File;
 @Configuration
 public class DbConfig {
 
-    @Value("db.url")
+    @Value("${db.url}")
     private String url;
-    @Value("db.username")
+    @Value("${db.username}")
     private String username;
-    @Value("db.password")
+    @Value("${db.password}")
     private String password;
 
 
     @Bean
-    public DataSource getDataSource() {
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("org.postgresql.Driver");
-        dataSourceBuilder.url(url);
-        dataSourceBuilder.username(username);
-        dataSourceBuilder.password(password);
-        return dataSourceBuilder.build();
+    public DataSource getDataSource() throws ClassNotFoundException {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        dataSource.setInitialSize(10);
+        dataSource.setMaxTotal(20);
 
+        return dataSource;
     }
 
     @Bean
