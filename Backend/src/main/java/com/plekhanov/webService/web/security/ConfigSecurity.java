@@ -33,18 +33,15 @@ import javax.servlet.Filter;
  *
  *
  * auth.userDetailsService(UserDetailsService) - Поменять UserDetailsService
- * {@link UserDetailsService} - Находит информацию о пользователе по имени
+ * {@link UserDetailsService} - Сервис, который находит информацию о правах и доступах пользователя по его имени
  *
  * UserDetails - Права и доступы пользователя
  * GrantedAuthority - Роли пользователя
  *
  *
- * http.addFilter(Filter) - Добавить кастомный фильтр
- * {@link Filter}- Интерфейс для кастомного фильтра
- *
- *
- * auth.authenticationProvider(AuthenticationProvider) - Поменять AuthenticationProvider
+ * auth.authenticationProvider(AuthenticationProvider) - Добавить AuthenticationProvider
  * {@link AuthenticationProvider} - Интерфейс для кастомной аунтефикации
+ * Если метод authenticate() возвращает null, то обработка передается следующему AuthenticationProvider
  *
  *
  * {@link Authentication} - Информация об аунтефикации пользователя. После успешной аутентификации кладется в контекст
@@ -52,7 +49,13 @@ import javax.servlet.Filter;
  * Если метод isAuthenticated() возвращает true, то запрос не будет проверяться другими AuthenticationProvider
  * SecurityContextHolder.getContext().setAuthentication(Authentication) - Явно поместить Authentication в контекст
  *
- * https://www.youtube.com/watch?v=HLSmjZ5vN0w
+ *
+ * http.addFilter(Filter) - Добавить кастомный фильтр
+ * {@link Filter}- Интерфейс для кастомного фильтра
+ *
+ *
+ * https://www.youtube.com/watch?v=vSwJoHTkl_o&list=PLaWfw53gNyzaDTEmrlCCj1jjqr6770Nnp&index=18
+ * Enable HTTPS/SSL  https://www.youtube.com/watch?v=HLSmjZ5vN0w
  * Справка: https://www.baeldung.com/spring-security-login
  */
 @Configuration
@@ -62,6 +65,11 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     @Qualifier("AppUserDetailService")
     UserDetailsService userDetailsService;
+
+
+    @Autowired
+    @Qualifier("MyAuthProvider")
+    AuthenticationProvider authenticationProvider;
 
     /**
      * Настройка защищенных эндпойнтов
@@ -100,6 +108,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-        //auth.authenticationProvider()
+        auth.authenticationProvider(authenticationProvider);
     }
 }
