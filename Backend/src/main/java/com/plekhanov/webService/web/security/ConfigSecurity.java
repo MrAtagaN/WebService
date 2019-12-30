@@ -23,6 +23,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * loginProcessingUrl - URL для принятия логина и пароля
  * defaultSuccessUrl - URL после авторизации
  *
+ * loginPage("/login.html") - редирект на эндпойнт при неодходимости авторизации (должен быть доступен всем)
+ * failureUrl("/login.html?error=true") - редирект на эндпойнт при ошибке логина (должен быть доступен всем)
+ * logoutUrl("/logout") - эндпойнт для разлогина
  *
  *
  * UserDetails - Права и доступы пользователя
@@ -78,7 +81,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.html")//TODO поменять
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/", true)
-                //.failureUrl("/login.html?error=true")
+                //.failureUrl("/login.html?error=true") //редирект на эндпойнт при ошибке логина
                 //.failureHandler(authenticationFailureHandler())
                 .and()
                 .logout()
