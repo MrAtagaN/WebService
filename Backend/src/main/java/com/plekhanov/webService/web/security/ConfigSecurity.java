@@ -44,6 +44,9 @@ import org.springframework.web.filter.GenericFilterBean;
  * AuthenticationProvider - Интерфейс для кастомной аунтефикации
  *
  *
+ * securityContext.setAuthentication(Authentication) - Поменять Authentication
+ * Authentication - Информация о аунтефикации пользователя
+ *
  * https://www.youtube.com/watch?v=HLSmjZ5vN0w
  * Справка: https://www.baeldung.com/spring-security-login
  */
