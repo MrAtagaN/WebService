@@ -3,11 +3,13 @@ package com.plekhanov.webService.web.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.filter.GenericFilterBean;
+import javax.servlet.Filter;
 
 /**
  * antMatchers() - маска URL
@@ -30,22 +33,22 @@ import org.springframework.web.filter.GenericFilterBean;
  *
  *
  * auth.userDetailsService(UserDetailsService) - Поменять UserDetailsService
- * UserDetailsService - Интерфейс возвращающий UserDetails по имени
+ * {@link UserDetailsService} - Находит информацию о пользователе по имени
  *
  * UserDetails - Права и доступы пользователя
  * GrantedAuthority - Роли пользователя
  *
  *
  * http.addFilter(Filter) - Добавить кастомный фильтр
- * Filter - Интерфейс для кастомного фильтра
+ * {@link Filter}- Интерфейс для кастомного фильтра
  *
  *
  * auth.authenticationProvider(AuthenticationProvider) - Поменять AuthenticationProvider
- * AuthenticationProvider - Интерфейс для кастомной аунтефикации
+ * {@link AuthenticationProvider} - Интерфейс для кастомной аунтефикации
  *
  *
  * securityContext.setAuthentication(Authentication) - Поменять Authentication
- * Authentication - Информация о аунтефикации пользователя
+ * {@link Authentication} - Информация о аунтефикации пользователя
  *
  * https://www.youtube.com/watch?v=HLSmjZ5vN0w
  * Справка: https://www.baeldung.com/spring-security-login
