@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.filter.GenericFilterBean;
 
 /**
  * antMatchers() - маска URL
@@ -28,10 +29,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * logoutUrl("/logout") - эндпойнт для разлогина
  *
  *
+ * auth.userDetailsService(UserDetailsService) - Поменять UserDetailsService
+ * UserDetailsService - Интерфейс возвращающий UserDetails по имени
+ *
  * UserDetails - Права и доступы пользователя
  * GrantedAuthority - Роли пользователя
  *
- * UserDetailsService - Сервис возвращающий UserDetails пользователя по имени
+ *
+ * http.addFilter(Filter) - Добавить кастомный фильтр
+ * Filter - Интерфейс для кастомного фильтра
+ *
+ *
+ * auth.authenticationProvider(AuthenticationProvider) - Поменять AuthenticationProvider
+ * AuthenticationProvider - Интерфейс для кастомной аунтефикации
  *
  *
  * https://www.youtube.com/watch?v=HLSmjZ5vN0w
@@ -50,22 +60,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .antMatchers("/", "/home").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login.html")
-//                .permitAll()
-//                .loginProcessingUrl("/perform_login")
-//                .permitAll()
-//                .failureUrl("/login.html?error=true")
-//                .permitAll()
-//                .defaultSuccessUrl("/", true)
-//                .and()
-//                .logout()
-//                .permitAll();
-
         http.csrf().disable()
                 .authorizeRequests()
                 //.antMatchers("/admin/**").hasRole("ADMIN")
@@ -98,5 +92,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        //auth.authenticationProvider()
     }
 }
