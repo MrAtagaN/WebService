@@ -47,8 +47,10 @@ import javax.servlet.Filter;
  * {@link AuthenticationProvider} - Интерфейс для кастомной аунтефикации
  *
  *
- * securityContext.setAuthentication(Authentication) - Поменять Authentication
- * {@link Authentication} - Информация о аунтефикации пользователя
+ * {@link Authentication} - Информация об аунтефикации пользователя. После успешной аутентификации кладется в контекст
+ * SecurityContextHolder
+ * Если метод isAuthenticated() возвращает true, то запрос не будет проверяться другими AuthenticationProvider
+ * SecurityContextHolder.getContext().setAuthentication(Authentication) - Явно поместить Authentication в контекст
  *
  * https://www.youtube.com/watch?v=HLSmjZ5vN0w
  * Справка: https://www.baeldung.com/spring-security-login

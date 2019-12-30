@@ -15,6 +15,7 @@ public class LoginController {
     @GetMapping()
     public String getLoginMessage() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         User user = (User)authentication.getPrincipal();
         return "adasdasd";
     }
