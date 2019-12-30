@@ -1,4 +1,4 @@
-package com.plekhanov.webService.persistence.entities;
+package com.plekhanov.webService.entities;
 
 
 public abstract class BaseEntity<ID> {

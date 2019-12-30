@@ -1,4 +1,4 @@
-package com.plekhanov.webService.persistence.entities;
+package com.plekhanov.webService.entities;
 
 import com.plekhanov.webService.web.security.Role;
 import lombok.AllArgsConstructor;

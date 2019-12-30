@@ -1,4 +1,4 @@
-package com.plekhanov.webService.persistence.dao;
+package com.plekhanov.webService.dao;
 
 public interface BaseDao<T, ID> {
 

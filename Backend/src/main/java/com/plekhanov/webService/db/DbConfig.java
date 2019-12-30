@@ -1,4 +1,4 @@
-package com.plekhanov.webService.persistence.db;
+package com.plekhanov.webService.db;
 
 
 import org.apache.commons.dbcp2.BasicDataSource;

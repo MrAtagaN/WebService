@@ -1,8 +1,8 @@
-package com.plekhanov.webService.persistence.dao.impl;
+package com.plekhanov.webService.dao.impl;
 
 
-import com.plekhanov.webService.persistence.dao.BaseDao;
-import com.plekhanov.webService.persistence.entities.BaseEntity;
+import com.plekhanov.webService.dao.BaseDao;
+import com.plekhanov.webService.entities.BaseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
