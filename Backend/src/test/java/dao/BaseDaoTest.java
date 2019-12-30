@@ -6,6 +6,7 @@ import com.sun.org.glassfish.external.statistics.annotations.Reset;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestContext;
@@ -18,12 +19,14 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.reflect.Method;
 
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import static org.springframework.test.context.TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@BaseDaoTest.TestConfig
 public abstract class BaseDaoTest<T extends BaseEntity<ID>, DAO extends BaseDao<T, ID>, ID> {
 
     @Autowired
@@ -46,22 +49,32 @@ public abstract class BaseDaoTest<T extends BaseEntity<ID>, DAO extends BaseDao<
     public @interface DisableIntegrity{}
 
 
+    /**
+     * Логика аннотации @DisableIntegrity
+     */
     public static class DisableIntegrityTestExecutionListener extends AbstractTestExecutionListener {
 
         private JdbcTemplate jdbcTemplate;
         @Override
-        public void prepareTestInstance(TestContext testContext) throws Exception {
-            super.prepareTestInstance(testContext);
+        public void prepareTestInstance(TestContext testContext) {
+            ApplicationContext ctx = testContext.getApplicationContext();
+            this.jdbcTemplate = new JdbcTemplate(ctx.getBean(DataSource.class));
         }
 
         @Override
-        public void beforeTestMethod(TestContext testContext) throws Exception {
-            super.beforeTestMethod(testContext);
+        public void beforeTestMethod(TestContext testContext) {
+            Method testMethod = testContext.getTestMethod();
+            if (testMethod.isAnnotationPresent(DisableIntegrity.class)) {
+                jdbcTemplate.execute("SET REFERENTIAL_INTEGRITY FALSE");
+            }
         }
 
         @Override
-        public void afterTestMethod(TestContext testContext) throws Exception {
-            super.afterTestMethod(testContext);
+        public void afterTestMethod(TestContext testContext) {
+            Method testMethod = testContext.getTestMethod();
+            if (testMethod.isAnnotationPresent(DisableIntegrity.class)) {
+                jdbcTemplate.execute("SET REFERENTIAL_INTEGRITY TRUE");
+            }
         }
     }
 
@@ -78,6 +91,6 @@ public abstract class BaseDaoTest<T extends BaseEntity<ID>, DAO extends BaseDao<
     @TestExecutionListeners(listeners = {
             ResetDbTestExecutionListener.class,
             DisableIntegrityTestExecutionListener.class}, mergeMode = MERGE_WITH_DEFAULTS)
-    public static @interface TestConfig{}
+    public @interface TestConfig{}
 
 }
