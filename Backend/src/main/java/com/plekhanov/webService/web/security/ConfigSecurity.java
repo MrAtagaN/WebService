@@ -68,10 +68,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
 
 
-    @Autowired
-    @Qualifier("MyAuthProvider")
-    AuthenticationProvider authenticationProvider;
-
     /**
      * Настройка защищенных эндпойнтов
      */
@@ -109,6 +105,5 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-        auth.authenticationProvider(authenticationProvider);
     }
 }
