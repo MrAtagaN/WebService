@@ -68,6 +68,16 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
 
 
+    public void configure(WebSecurity webSecurity) {
+        webSecurity.ignoring()
+                .antMatchers("/")
+                .antMatchers("/*.js")
+                .antMatchers("/*.html")
+                .antMatchers("/*.css")
+                .antMatchers("/login.html") //TODO поменять
+                .antMatchers("/*.ico");
+    }
+
     /**
      * Настройка защищенных эндпойнтов
      */
@@ -75,13 +85,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                //.antMatchers("/admin/**").hasRole("ADMIN")
-                //.antMatchers("/anonymous*").anonymous()
-                .antMatchers("/").permitAll()
-                .antMatchers("/*.js").permitAll()
-                .antMatchers("/*.html").permitAll()
-                .antMatchers("/*.css").permitAll()
-                .antMatchers("/login.html").permitAll() //TODO поменять
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
