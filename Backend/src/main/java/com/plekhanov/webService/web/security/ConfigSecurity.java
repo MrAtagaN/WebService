@@ -54,7 +54,8 @@ import javax.servlet.Filter;
  * {@link Filter}- Интерфейс для кастомного фильтра
  *
  *
- * https://www.youtube.com/watch?v=vSwJoHTkl_o&list=PLaWfw53gNyzaDTEmrlCCj1jjqr6770Nnp&index=18
+ * Хабр https://habr.com/ru/post/346628/
+ * Видео https://www.youtube.com/watch?v=vSwJoHTkl_o&list=PLaWfw53gNyzaDTEmrlCCj1jjqr6770Nnp&index=18
  * Enable HTTPS/SSL  https://www.youtube.com/watch?v=HLSmjZ5vN0w
  * Справка: https://www.baeldung.com/spring-security-login
  */
