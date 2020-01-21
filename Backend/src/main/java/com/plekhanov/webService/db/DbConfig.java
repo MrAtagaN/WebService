@@ -24,7 +24,7 @@ public class DbConfig {
 
 
     @Bean
-    public DataSource getDataSource() throws ClassNotFoundException {
+    public DataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl(url);
